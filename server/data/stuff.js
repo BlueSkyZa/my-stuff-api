@@ -24,7 +24,14 @@
 // Create new record
 //----------------------------------------------------------------------------------------------------------------------
 function post(req, res) {
-    data.push(reg.body);
+    if (!req.body.id) return res.status(400).json({success: false, message: 'Id not provided'});
+    if (!req.body.parentId) return res.status(400).json({success: false, message: 'Parent Id not provided'});
+    if (!req.body.name) return res.status(400).json({success: false, message: 'Name not provided'});
+
+    console.log('POST STUFF');
+    console.log(req.body);
+
+    data.push(req.body);
     res.json({success: true});
 }
 
@@ -32,11 +39,14 @@ function post(req, res) {
 // Update existing record
 //----------------------------------------------------------------------------------------------------------------------
 function put(req, res) {
-    if (!req.query.id) return res.status(400).json({success: false, message: 'Id not provided'});
-    if (!req.body.name) return res.status(400).json({success: false, message: 'Data not provided'});
+    if (!req.body.parentId) return res.status(400).json({success: false, message: 'Parent Id not provided'});
+    if (!req.body.name) return res.status(400).json({success: false, message: 'Name not provided'});
 
-    const item = data.find(item => item.id === req.query.id);
+    const item = data.find(item => item.id === req.params.id);
     if (!item) return res.status(410).json({success: false, message: 'item not found'});
+
+    console.log('PUT STUFF');
+    console.log(req.body);
 
     item.parentId = req.body.parentId;
     item.name = req.body.name;
@@ -47,6 +57,9 @@ function put(req, res) {
 // Get records
 //----------------------------------------------------------------------------------------------------------------------
 function get(req, res) {
+    console.log('GET STUFF');
+    console.log(data);
+
     res.json({success: true, data: data});
 }
 
@@ -54,10 +67,11 @@ function get(req, res) {
 // Delete record
 //----------------------------------------------------------------------------------------------------------------------
 function del(req, res) {
-    if (!req.query.id) return res.status(400).json({success: false, message: 'Id not provided'});
-
-    const index = data.findIndex(item => item.id === req.query.id);
+    const index = data.findIndex(item => item.id === req.params.id);
     if (index === -1) return res.status(410).json({success: false, message: 'item not found'});
+
+    data.splice(index, 1);
+    console.log('DELETE STUFF: ' + req.params.id);
 
     res.json({success: true});
 }
