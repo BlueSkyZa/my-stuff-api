@@ -1,7 +1,7 @@
 "use strict";
 
 //======================================================================================================================
-// Staff data
+// Stuff data
 //======================================================================================================================
     const
 //----------------------------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ function put(req, res) {
     if (!req.body.name) return res.status(400).json({success: false, message: 'Name not provided'});
 
     const item = data.find(item => item.id === req.params.id);
-    if (!item) return res.status(410).json({success: false, message: 'item not found'});
+    if (!item) return res.status(410).json({success: false, message: 'Stuff not found'});
 
     console.log('PUT STUFF');
     console.log(req.body);
@@ -57,9 +57,7 @@ function put(req, res) {
 // Get records
 //----------------------------------------------------------------------------------------------------------------------
 function get(req, res) {
-    console.log('GET STUFF');
-    console.log(data);
-
+    console.log('GET STUFF: ' + data.length);
     res.json({success: true, data: data});
 }
 
@@ -68,7 +66,7 @@ function get(req, res) {
 //----------------------------------------------------------------------------------------------------------------------
 function del(req, res) {
     const index = data.findIndex(item => item.id === req.params.id);
-    if (index === -1) return res.status(410).json({success: false, message: 'item not found'});
+    if (index === -1) return res.status(410).json({success: false, message: 'Stuff not found'});
 
     data.splice(index, 1);
     console.log('DELETE STUFF: ' + req.params.id);
