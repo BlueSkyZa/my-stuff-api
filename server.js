@@ -8,7 +8,8 @@
     express = require('express'),
     app = express(),
     http = require('http'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    cors = require('cors');
 
 //----------------------------------------------------------------------------------------------------------------------
 // Uncaught Errors
@@ -24,13 +25,7 @@ process.on('unhandledRejection', error => {
 //----------------------------------------------------------------------------------------------------------------------
 //  CORS
 //----------------------------------------------------------------------------------------------------------------------
-app.use(function(req, res, next){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-    next();
-});
+app.use(cors());
 
 //----------------------------------------------------------------------------------------------------------------------
 // Body Parsers
