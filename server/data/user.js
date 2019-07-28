@@ -19,6 +19,7 @@
 function post(req, res) {
     if (!req.body.username) return res.status(400).json({success: false, message: 'Username not provided'});
     if (!req.body.password) return res.status(400).json({success: false, message: 'Password not provided'});
+    if (!req.body.role) return res.status(400).json({success: false, message: 'Role not provided'});
 
     console.log('POST USER');
     console.log(req.body);
@@ -42,6 +43,7 @@ function put(req, res) {
 
     if (req.body.username) item.username = req.body.username;
     if (req.body.password) item.password = req.body.password;
+    if (req.body.role) item.role = req.body.role;
 
     res.json({success: true});
 }
@@ -52,7 +54,7 @@ function put(req, res) {
 function get(req, res) {
     console.log('GET USER: ' + data.length);
     res.json({success: true, data: data.map(user => {
-            return {id: user.id, username: user.username};
+            return {id: user.id, username: user.username, role: user.role};
         })});
 }
 
