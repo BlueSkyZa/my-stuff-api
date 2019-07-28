@@ -29,6 +29,7 @@ function authenticate(req, res) {
 // Authorise provided token
 //----------------------------------------------------------------------------------------------------------------------
 function authorise(req, res, next) {
+    // TODO: check for and validate web token
     next();
 }
 

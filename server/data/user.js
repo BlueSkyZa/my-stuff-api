@@ -88,6 +88,8 @@ function authenticate(username, password) {
 
     if (data[index].password === password) return {success: true, data: {token : 'DUMMY TOKEN', user: user}};
     else return {success: false, message: 'Invalid login'};
+
+    // TODO: create and return web token
 }
 
 //======================================================================================================================
