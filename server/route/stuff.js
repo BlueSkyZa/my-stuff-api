@@ -16,7 +16,7 @@
 router.post("/", auth.authorise, stuff.post);
 router.put("/:id", auth.authorise, stuff.put);
 router.get("/", auth.authorise, stuff.get);
-router.del("/", auth.authorise, stuff.del);
+router.delete("/:id", auth.authorise, stuff.del);
 
 //======================================================================================================================
 // Exports

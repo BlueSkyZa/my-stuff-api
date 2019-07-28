@@ -27,13 +27,6 @@ function start(server) {
         .on('connection', (socket) => {
             console.log('SOCKET CLIENT CONNECTED');
 
-            emitter.on('event', event => {
-                console.log(event);
-                socket.emit('location', location, (result) => {
-                    if (!result || !result.success) process.log.error(result);
-                });
-            });
-
             socket.on('disconnect', () => {
                 console.log('SOCKET CLIENT DISCONNECTED');
             })
