@@ -13,10 +13,10 @@
 //----------------------------------------------------------------------------------------------------------------------
 // Routes
 //----------------------------------------------------------------------------------------------------------------------
-router.post("/", auth.authorise, user.post);
-router.put("/:id", auth.authorise, user.put);
-router.get("/", auth.authorise, user.get);
-router.delete("/:id", auth.authorise, user.del);
+router.post("/", auth.authorise, auth.admin, user.post);
+router.put("/:id", auth.authorise, auth.admin, user.put);
+router.get("/", auth.authorise, auth.admin, user.get);
+router.delete("/:id", auth.authorise, auth.admin, user.del);
 
 //======================================================================================================================
 // Exports

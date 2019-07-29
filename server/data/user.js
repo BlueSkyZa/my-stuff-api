@@ -86,10 +86,8 @@ function authenticate(username, password) {
         role: data[index].role,
     };
 
-    if (data[index].password === password) return {success: true, data: {token : 'DUMMY TOKEN', user: user}};
+    if (data[index].password === password) return {success: true, data: user};
     else return {success: false, message: 'Invalid login'};
-
-    // TODO: create and return web token
 }
 
 //======================================================================================================================
